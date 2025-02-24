@@ -14,7 +14,7 @@ export const RootLayout = () => {
 	}, [location]);
 
 	return (
-		<main className='mx-auto max-w-7xl'>
+		<main className='max-w-8xl mx-auto px-2 md:px-8'>
 			<Header />
 			<Outlet />
 			<p className='text-primary'>ПРиВЕТ</p>

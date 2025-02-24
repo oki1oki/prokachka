@@ -9,8 +9,8 @@ export const Header = () => {
 
 	return (
 		<>
-			<header className='bg-background sticky top-0 z-50 w-full border-b dark:border-black'>
-				<div className='mx-auto flex h-16 max-w-screen-xl items-center justify-between px-4'>
+			<header className='bg-background sticky top-0 z-50 border-b dark:border-black'>
+				<div className='flex h-16 items-center justify-between'>
 					<Link to='/' className='flex items-center gap-2'>
 						<BicepsFlexed size={36} />
 						<h2 className='text-2xl font-bold'>
@@ -50,7 +50,7 @@ export const Header = () => {
 			</header>
 
 			{/* Навигация на мобильных устройствах */}
-			<nav className='bg-background/80 fixed right-4 bottom-4 left-4 z-50 flex h-16 w-auto items-center justify-around rounded-full border-t border-gray-200 shadow-lg backdrop-blur-xl sm:hidden dark:border-gray-800'>
+			<nav className='bg-background/80 fixed right-4 bottom-4 left-4 z-50 flex h-16 w-auto items-center justify-around rounded-full border-t border-gray-200 shadow-lg backdrop-blur-[6px] sm:hidden dark:border-gray-800'>
 				<Link
 					to='/catalog'
 					className={cn(

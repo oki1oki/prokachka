@@ -1,5 +1,5 @@
-import { Edit, Heart, MoreVertical, Trash2 } from 'lucide-react';
-import { Exercise } from '@/entities/exercise';
+import { Heart, Trash2 } from 'lucide-react';
+import { Exercise, useExerciseStore } from '@/entities/exercise';
 import { Badge } from '@/shared/ui/badge';
 import {
 	Card,
@@ -8,77 +8,67 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/shared/ui/card';
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuTrigger,
-} from '@/shared/ui/dropdown-menu';
-import { useExerciseStore } from '../models/store';
+import { cn } from '@/shared/utils/tw-merge';
+import { difficultColors, difficultMap } from '../models/models';
 
 interface ExerciseCardProps {
 	exercise: Exercise;
+	isFavorite?: boolean;
+	toggleFavorite: () => void;
 }
 
-export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
-	const { toggleEditModal, deleteExercise } = useExerciseStore();
-	const badgeVariants: Record<string, 'warn' | 'destructive' | 'accept'> = {
-		Среднее: 'warn',
-		Сложное: 'destructive',
-		Простое: 'accept',
-	};
+export const ExerciseCard = ({
+	exercise,
+	isFavorite,
+	toggleFavorite,
+}: ExerciseCardProps) => {
+	const { deleteExercise } = useExerciseStore();
 
 	return (
-		<Card className='w-full space-y-2 border-none shadow-none sm:max-w-[300px]'>
-			<CardHeader className='relative h-full w-full p-0'>
+		<Card className='z-1 cursor-pointer space-y-2 rounded-2xl border-none shadow-none'>
+			<CardHeader className='relative w-full p-0'>
 				<Badge
-					variant={badgeVariants[exercise.difficult]}
-					className='absolute -top-3 -left-3 z-10'
+					variant={difficultColors[exercise.difficult]}
+					className='absolute top-2.5 z-10 rounded-l-none font-bold'
 				>
-					{exercise.difficult}
+					{difficultMap[exercise.difficult]}
 				</Badge>
 
-				<video src={exercise.videoUrl} />
+				<img
+					src={exercise.imgUrl}
+					alt={exercise.title}
+					className='rounded-xl'
+				/>
 
-				<DropdownMenu modal={false}>
-					<DropdownMenuTrigger className='absolute top-2 right-2 text-black'>
-						<MoreVertical size={24} />
-					</DropdownMenuTrigger>
-					<DropdownMenuContent align='end'>
-						<DropdownMenuItem>
-							<Heart />
-							<span>В избранное</span>
-						</DropdownMenuItem>
-						<DropdownMenuItem
-							onClick={() => toggleEditModal(exercise)}
-						>
-							<Edit />
-							<span>Редактировать</span>
-						</DropdownMenuItem>
-						<DropdownMenuItem
-							className='text-destructive focus:text-destructive'
-							onClick={() => deleteExercise(exercise.id)}
-						>
-							<Trash2 />
-							<span>Удалить</span>
-						</DropdownMenuItem>
-					</DropdownMenuContent>
-				</DropdownMenu>
+				<button
+					className='absolute top-0 right-0 grid size-12 place-items-center sm:size-10'
+					onClick={(e) => {
+						e.stopPropagation();
+						toggleFavorite();
+					}}
+				>
+					<Heart
+						className={cn(
+							'hover:stroke-primary size-7 fill-white/50 stroke-white/50 stroke-3 md:size-6',
+							isFavorite && 'fill-primary stroke-primary'
+						)}
+					/>
+				</button>
 			</CardHeader>
 
-			<CardContent className='space-y-2 px-0'>
+			<CardContent className='space-y-2 p-0'>
 				<CardTitle className='group-hover:text-primary/85'>
 					{exercise.title}
 				</CardTitle>
 				<CardDescription>{exercise.description}</CardDescription>
-
-				{/* <div className='min-h-fit space-x-1'>
-					{exercise.muscleGroups.map((item, i) => (
-						<Badge variant='secondary' key={i}>
-							{item}
-						</Badge>
-					))}
-				</div> */}
+				<button
+					onClick={(e) => {
+						e.stopPropagation();
+						deleteExercise(exercise.id);
+					}}
+				>
+					<Trash2 />
+				</button>
 			</CardContent>
 		</Card>
 	);

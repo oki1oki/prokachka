@@ -7,10 +7,11 @@ interface AccountStore {
 	account: Account | null;
 	addAccount: (account: Account) => void;
 	updateAccount: (data: Partial<Account>) => void;
+	toggleFavoriteExercise: (exerciseId: string) => void;
 }
 
-export const useAccountStore = create<AccountStore>()(
-	persist(
+export const useAccountStore = create(
+	persist<AccountStore>(
 		(set) => ({
 			account: null,
 			addAccount: (account) => set({ account }),
@@ -18,6 +19,27 @@ export const useAccountStore = create<AccountStore>()(
 				set((state) => ({
 					account: { ...state.account!, ...data },
 				})),
+			toggleFavoriteExercise: (exerciseId) => {
+				set((state) => {
+					const account = state.account!;
+					const favoriteExercises =
+						account.profile.favoritesExercises;
+					const isFavorite = favoriteExercises.includes(exerciseId);
+					const newFavorites = isFavorite
+						? favoriteExercises.filter((id) => id !== exerciseId)
+						: [...favoriteExercises, exerciseId];
+
+					return {
+						account: {
+							...account,
+							profile: {
+								...account.profile,
+								favoritesExercises: newFavorites,
+							},
+						},
+					};
+				});
+			},
 		}),
 		{
 			name: 'account-storage',

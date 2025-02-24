@@ -5,21 +5,20 @@ import { Exercise } from './models';
 
 interface ExerciseStore {
 	exercises: Exercise[];
-	isEditModalOpen: boolean;
-	currentExercise: Exercise | null;
+
 	addExercise: (exercise: Exercise) => void;
 	updateExercise: (id: string, data: Partial<Exercise>) => void;
 	deleteExercise: (id: string) => void;
 	getExercise: (id: string) => Exercise | undefined;
-	toggleEditModal: (exercise: Exercise) => void;
 }
 
-export const useExerciseStore = create<ExerciseStore>()(
-	persist(
+export const useExerciseStore = create(
+	persist<ExerciseStore>(
 		(set, get) => ({
 			exercises: [],
+			currentExerciseId: '',
+			isInfoModalOpen: false,
 			isEditModalOpen: false,
-			currentExercise: null,
 
 			addExercise: (exercise: Exercise) =>
 				set((state) => ({
@@ -42,12 +41,6 @@ export const useExerciseStore = create<ExerciseStore>()(
 
 			getExercise: (id) =>
 				get().exercises.find((exercise) => exercise.id === id),
-
-			toggleEditModal: (exercise) =>
-				set((state) => ({
-					isEditModalOpen: !state.isEditModalOpen,
-					currentExercise: exercise,
-				})),
 		}),
 		{
 			name: 'exercise-storage',

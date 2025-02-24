@@ -3,7 +3,7 @@ export interface Achievement {
 	title: string;
 	description: string;
 	receiptDate: Date;
-	rarity: "common" | "rare" | "epic" | "legendary";
+	rarity: 'common' | 'rare' | 'epic' | 'legendary';
 	goal: {
 		value: number;
 		progress: number;
@@ -16,19 +16,19 @@ export interface Profile {
 	height: number;
 	weight: number;
 	goal: {
-		type: "muscleGain" | "weightLoss" | "keepFit";
+		type: 'muscleGain' | 'weightLoss' | 'keepFit';
 		value?: number;
 		progress?: number;
 	};
-	expirience: "beginner" | "intermediate" | "advanced";
+	expirience: 'beginner' | 'intermediate' | 'advanced';
 	trainingDays: number;
 
-	favoritesExercises: number[];
+	favoritesExercises: string[];
 	coins: number;
 }
 
 export interface AccountStatistics {
-	trainingsHistory: number[];
+	trainingsHistory: string[];
 	completedTrainings: number;
 	totalTrainingTime: number;
 	totalRepetitions: number;

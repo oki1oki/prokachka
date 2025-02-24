@@ -6,6 +6,8 @@
 @custom-variant hover (&:hover);
 
 @theme inline {
+	--spacing-8xl: 1504px;
+
 	--color-background: hsl(var(--background));
 	--color-foreground: hsl(var(--foreground));
 
