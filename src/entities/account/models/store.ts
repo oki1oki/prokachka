@@ -16,14 +16,22 @@ export const useAccountStore = create(
 			account: null,
 			addAccount: (account) => set({ account }),
 			updateAccount: (data) =>
-				set((state) => ({
-					account: { ...state.account!, ...data },
-				})),
+				set((state) => {
+					if (!state.account) throw new Error('Аккаунт не найден');
+
+					return {
+						account: {
+							...state.account,
+							...data,
+						},
+					};
+				}),
 			toggleFavoriteExercise: (exerciseId) => {
 				set((state) => {
-					const account = state.account!;
-					const favoriteExercises =
-						account.profile.favoritesExercises;
+					if (!state.account) throw new Error('Аккаунт не найден');
+
+					const { profile } = state.account;
+					const favoriteExercises = profile.favExIds;
 					const isFavorite = favoriteExercises.includes(exerciseId);
 					const newFavorites = isFavorite
 						? favoriteExercises.filter((id) => id !== exerciseId)
@@ -31,10 +39,10 @@ export const useAccountStore = create(
 
 					return {
 						account: {
-							...account,
+							...state.account,
 							profile: {
-								...account.profile,
-								favoritesExercises: newFavorites,
+								...profile,
+								favExIds: newFavorites,
 							},
 						},
 					};

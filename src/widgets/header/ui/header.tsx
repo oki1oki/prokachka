@@ -50,7 +50,7 @@ export const Header = () => {
 			</header>
 
 			{/* Навигация на мобильных устройствах */}
-			<nav className='bg-background/80 fixed right-4 bottom-4 left-4 z-50 flex h-16 w-auto items-center justify-around rounded-full border-t border-gray-200 shadow-lg backdrop-blur-[6px] sm:hidden dark:border-gray-800'>
+			<nav className='bg-background/80 fixed right-4 bottom-2 left-4 z-50 flex h-16 w-auto items-center justify-around rounded-full border-t border-gray-200 shadow-lg backdrop-blur-[6px] sm:hidden dark:border-gray-800'>
 				<Link
 					to='/catalog'
 					className={cn(

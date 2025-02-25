@@ -27,8 +27,6 @@ export const AddExercise = () => {
 		}
 	};
 
-	console.log(file);
-
 	return (
 		<Dialog>
 			<DialogTrigger asChild>

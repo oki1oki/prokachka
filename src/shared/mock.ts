@@ -1,3 +1,4 @@
+import { Training } from '@/features/training/models/models';
 import { Account } from '@/entities/account';
 import { Exercise } from '@/entities/exercise';
 
@@ -14,7 +15,7 @@ export const mockAccount: Account = {
 		},
 		expirience: 'intermediate',
 		trainingDays: 5,
-		favoritesExercises: ['1', '2', '3'],
+		favExIds: ['1', '2', '3'],
 		coins: 100,
 	},
 	statistics: {
@@ -52,32 +53,97 @@ export const mockAccount: Account = {
 export const mockExercises: Exercise[] = [
 	{
 		id: '1',
-		title: 'ЖИМ',
-		description: ['A basic push-up exercise.'],
-		equipment: [{ value: 'none', label: 'None' }],
-		muscleGroups: [{ value: 'chest', label: 'Chest' }],
+		title: 'Жим штанги лежа',
+		description: [
+			'Базовое упражнение для развития грудных мышц',
+			'Выполняется на горизонтальной скамье',
+		],
+		equipment: [
+			{ value: 'barbell', label: 'Штанга' },
+			{ value: 'bench', label: 'Скамья' },
+		],
+		muscleGroups: [
+			{ value: 'chest', label: 'Грудные' },
+			{ value: 'triceps', label: 'Трицепс' },
+		],
 		imgUrl: 'https://cdn.muscleandstrength.com/sites/default/files/barbell-bench-press_0.jpg',
 		videoUrl: 'https://youtu.be/tuwHzzPdaGc',
-		difficult: 'easy',
-	},
-	{
-		id: '2',
-		title: 'ЖИМ гантелей',
-		description: ['A basic pull-up exercise.'],
-		equipment: [{ value: 'pull-up-bar', label: 'Pull-Up Bar' }],
-		muscleGroups: [{ value: 'back', label: 'Back' }],
-		imgUrl: 'https://cdn.muscleandstrength.com/sites/default/files/incline-dumbbell-bench-press_0.jpg',
-		videoUrl: 'https://youtu.be/8nNi8jbbUPE',
 		difficult: 'medium',
 	},
 	{
+		id: '2',
+		title: 'Становая тяга',
+		description: [
+			'Комплексное упражнение для всего тела',
+			'Основная нагрузка на спину и ноги',
+		],
+		equipment: [{ value: 'barbell', label: 'Штанга' }],
+		muscleGroups: [
+			{ value: 'back', label: 'Спина' },
+			{ value: 'legs', label: 'Ноги' },
+		],
+		imgUrl: 'https://proteinhouse.net/image/data/blog/gainingmass/2.jpg',
+		videoUrl: 'https://youtu.be/8nNi8jbbUPE',
+		difficult: 'hard',
+	},
+	{
 		id: '3',
-		title: 'ЧЕТО',
-		description: ['A basic squat exercise.'],
-		equipment: [{ value: 'none', label: 'None' }],
-		muscleGroups: [{ value: 'legs', label: 'Legs' }],
-		imgUrl: 'https://cdn.muscleandstrength.com/sites/default/files/dumbbell-pullover.jpg',
+		title: 'Приседания со штангой',
+		description: ['Базовое упражнение для ног'],
+		equipment: [
+			{ value: 'barbell', label: 'Штанга' },
+			{ value: 'rack', label: 'Стойка' },
+		],
+		muscleGroups: [
+			{ value: 'legs', label: 'Ноги' },
+			{ value: 'glutes', label: 'Ягодицы' },
+		],
+		imgUrl: 'https://avatars.dzeninfra.ru/get-zen_doc/1704908/pub_5e6960221eec766a4e439ff7_5e697f68ca551a68df05091e/scale_1200',
 		videoUrl: 'https://youtu.be/XZ3XSwmk1Os',
 		difficult: 'hard',
+	},
+	{
+		id: '4',
+		title: 'Подтягивания',
+		description: ['Упражнение для спины с собственным весом'],
+		equipment: [{ value: 'pull-up-bar', label: 'Турник' }],
+		muscleGroups: [
+			{ value: 'back', label: 'Спина' },
+			{ value: 'biceps', label: 'Бицепс' },
+		],
+		imgUrl: 'https://images.techinsider.ru/upload/img_cache/eb0/eb016c03bc80f92f1d8b5cb8f703ceb6_ce_1620x1080x156x0.jpg',
+		videoUrl: 'https://youtu.be/eGo4IYlbE5g',
+		difficult: 'medium',
+	},
+	{
+		id: '5',
+		title: 'Отжимания от пола',
+		description: ['Базовое упражнение для верха тела'],
+		equipment: [{ value: 'none', label: 'Без оборудования' }],
+		muscleGroups: [
+			{ value: 'chest', label: 'Грудные' },
+			{ value: 'triceps', label: 'Трицепс' },
+		],
+		imgUrl: 'https://musclefit.info/wp-content/uploads/2020/09/polza-otzhimanij.jpg',
+		videoUrl: 'https://youtu.be/IODxDxX7oi4',
+		difficult: 'easy',
+	},
+];
+
+export const mockTrainings: Training[] = [
+	{
+		id: '1',
+		title: 'Тренировка верха тела',
+		exercisesIds: ['1', '4', '5'], // Жим штанги, подтягивания, отжимания
+	},
+	{
+		id: '2',
+		title: 'Тренировка ног',
+		exercisesIds: ['2', '3'], // Становая тяга и приседания
+	},
+	{
+		id: '3',
+		title: 'Полная тренировка тела',
+		exercisesIds: ['1', '2', '3', '4', '5'], // Все упражнения
 	},
 ];

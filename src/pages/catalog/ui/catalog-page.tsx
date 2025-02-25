@@ -1,13 +1,28 @@
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { ExercisesGrid } from '@/widgets/exercises-grid';
 import { useAccountStore } from '@/entities/account/models/store';
-import { AddExercise, ExerciseItem } from '@/entities/exercise';
+import { AddExercise, Exercise } from '@/entities/exercise';
 import { useExerciseStore } from '@/entities/exercise/models/store';
 import { mockAccount, mockExercises } from '@/shared/mock';
+import { Button } from '@/shared/ui/button';
 
 export const CatalogPage = () => {
-	const { account, toggleFavoriteExercise, addAccount } = useAccountStore();
+	const [isFavorites, setIsFavorites] = useState(false);
+	const { account, addAccount } = useAccountStore();
 	const { exercises, addExercise } = useExerciseStore();
-	const favoritesExercises = account?.profile?.favoritesExercises;
+
+	const favoriteExercises = useMemo(() => {
+		if (!isFavorites) return [];
+
+		const favoritesIds = account?.profile?.favExIds || [];
+
+		return favoritesIds.reduce<Exercise[]>((acc, id) => {
+			const ex = exercises.find((ex) => ex.id === id);
+			if (ex) acc.push(ex);
+			return acc;
+		}, []);
+	}, [isFavorites, exercises, account?.profile?.favExIds]);
 
 	return (
 		<div className='flex flex-col items-start gap-2'>
@@ -21,32 +36,13 @@ export const CatalogPage = () => {
 				ДОБАВИТЬ ПРОФИЛЬ
 			</button>
 			<AddExercise />
-			<div className='mb-10 grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-5'>
-				{exercises.map((ex) => (
-					<ExerciseItem
-						key={ex.id}
-						exercise={ex}
-						isFavorite={favoritesExercises?.includes(ex.id)}
-						toggleFavorite={() => toggleFavoriteExercise(ex.id)}
-					/>
-				))}
-			</div>
-			Избранные упражнения:
-			<div className='mb-10 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-5'>
-				{exercises.map(
-					(ex) =>
-						favoritesExercises?.includes(ex.id) && (
-							<ExerciseItem
-								key={ex.id}
-								exercise={ex}
-								isFavorite
-								toggleFavorite={() =>
-									toggleFavoriteExercise(ex.id)
-								}
-							/>
-						)
-				)}
-			</div>
+			<Button onClick={() => setIsFavorites((prev) => !prev)}>
+				{isFavorites ? 'Показать все' : 'Показать избранные'}
+			</Button>
+			<ExercisesGrid
+				exercises={!isFavorites ? exercises : favoriteExercises}
+			/>
+
 			<Link className='text-red-500' to='/'>
 				Go back to Home
 			</Link>

@@ -15,18 +15,23 @@ interface ExerciseCardProps {
 	exercise: Exercise;
 	isFavorite?: boolean;
 	toggleFavorite: () => void;
+	onClick?: () => void;
 }
 
 export const ExerciseCard = ({
 	exercise,
 	isFavorite,
 	toggleFavorite,
+	onClick,
 }: ExerciseCardProps) => {
 	const { deleteExercise } = useExerciseStore();
 
 	return (
-		<Card className='z-1 cursor-pointer space-y-2 rounded-2xl border-none shadow-none'>
-			<CardHeader className='relative w-full p-0'>
+		<Card
+			className='z-1 h-full cursor-pointer space-y-2 rounded-2xl border-none shadow-none'
+			onClick={onClick}
+		>
+			<CardHeader className='relative object-cover p-0'>
 				<Badge
 					variant={difficultColors[exercise.difficult]}
 					className='absolute top-2.5 z-10 rounded-l-none font-bold'
@@ -34,11 +39,13 @@ export const ExerciseCard = ({
 					{difficultMap[exercise.difficult]}
 				</Badge>
 
-				<img
-					src={exercise.imgUrl}
-					alt={exercise.title}
-					className='rounded-xl'
-				/>
+				<div className='aspect-[400/285]'>
+					<img
+						src={exercise.imgUrl}
+						alt={exercise.title}
+						className='h-full w-full rounded-xl object-cover'
+					/>
+				</div>
 
 				<button
 					className='absolute top-0 right-0 grid size-12 place-items-center sm:size-10'

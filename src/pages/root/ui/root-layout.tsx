@@ -9,7 +9,6 @@ export const RootLayout = () => {
 
 	useEffect(() => {
 		const path = location.pathname;
-		console.log(path);
 		document.title = `PROКАЧКА | ${titlesMap[path] || ''}`;
 	}, [location]);
 

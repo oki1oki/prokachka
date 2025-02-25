@@ -6,7 +6,7 @@ import { Exercise } from './models';
 interface ExerciseStore {
 	exercises: Exercise[];
 
-	addExercise: (exercise: Exercise) => void;
+	addExercise: (data: Omit<Exercise, 'id'>) => void;
 	updateExercise: (id: string, data: Partial<Exercise>) => void;
 	deleteExercise: (id: string) => void;
 	getExercise: (id: string) => Exercise | undefined;
@@ -20,9 +20,15 @@ export const useExerciseStore = create(
 			isInfoModalOpen: false,
 			isEditModalOpen: false,
 
-			addExercise: (exercise: Exercise) =>
+			addExercise: (data) =>
 				set((state) => ({
-					exercises: [...state.exercises, exercise],
+					exercises: [
+						...state.exercises,
+						{
+							id: self.crypto.randomUUID(),
+							...data,
+						},
+					],
 				})),
 
 			updateExercise: (id, data) =>

@@ -3,4 +3,6 @@ export type {
 	Profile,
 	AccountStatistics,
 	Achievement,
-} from "./models/models";
+} from './models/models';
+
+export { useAccountStore } from './models/store';

@@ -23,7 +23,7 @@ export interface Profile {
 	expirience: 'beginner' | 'intermediate' | 'advanced';
 	trainingDays: number;
 
-	favoritesExercises: string[];
+	favExIds: string[];
 	coins: number;
 }
 

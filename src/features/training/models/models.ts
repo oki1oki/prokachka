@@ -1,8 +1,18 @@
 export interface Training {
 	id: string;
 	title: string;
-	exercises: number[];
+	exercisesIds: string[];
+}
+
+export interface UserTraining extends EndTrainingData {
+	id: string;
+	trainigId: string;
 	totalTime: number;
 	startDate: Date;
-	endDate: Date;
+	endDate: Date | null;
+}
+
+export interface EndTrainingData {
+	rating?: number;
+	note?: string;
 }
