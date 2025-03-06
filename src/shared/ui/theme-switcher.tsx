@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useConfigStore } from '@/shared/config/store';
 
-export function ColorSwitcher() {
+export function ThemeSwitcher() {
 	const { theme } = useConfigStore();
 
 	useEffect(() => {

@@ -17,7 +17,7 @@ const ColorPicker = () => {
 						style={{
 							backgroundColor: `hsl(${item.color})`, // CSS стиль для фона
 						}}
-						className={`group flex items-center justify-center rounded-lg p-2 hover:outline hover:outline-gray-400 ${
+						className={`group flex h-10 items-center justify-center rounded-lg p-2 hover:outline hover:outline-gray-400 ${
 							isActive ? 'outline outline-black' : ''
 						}`}
 					>

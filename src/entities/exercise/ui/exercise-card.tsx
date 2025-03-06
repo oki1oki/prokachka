@@ -9,7 +9,7 @@ import {
 	CardTitle,
 } from '@/shared/ui/card';
 import { cn } from '@/shared/utils/tw-merge';
-import { difficultColors, difficultMap } from '../models/models';
+import { difficultColors } from '../model/models';
 
 interface ExerciseCardProps {
 	exercise: Exercise;
@@ -33,10 +33,11 @@ export const ExerciseCard = ({
 		>
 			<CardHeader className='relative object-cover p-0'>
 				<Badge
-					variant={difficultColors[exercise.difficult]}
+					variant={difficultColors[exercise.difficult.value]}
 					className='absolute top-2.5 z-10 rounded-l-none font-bold'
 				>
-					{difficultMap[exercise.difficult]}
+					{}
+					{exercise.difficult.label}
 				</Badge>
 
 				<div className='aspect-[400/285]'>

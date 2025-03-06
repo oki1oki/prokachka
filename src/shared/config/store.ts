@@ -4,14 +4,18 @@ import { BaseColor } from './themes';
 
 interface ConfigStore {
 	theme: BaseColor;
+	mode: 'light' | 'dark' | 'system';
 	setTheme: (theme: BaseColor) => void;
+	setMode: (mode: 'light' | 'dark' | 'system') => void;
 }
 
 export const useConfigStore = create(
 	persist<ConfigStore>(
 		(set) => ({
 			theme: 'yellow',
-			setTheme: (theme: BaseColor) => set({ theme }),
+			mode: 'system',
+			setTheme: (theme) => set({ theme }),
+			setMode: (mode) => set({ mode }),
 		}),
 		{
 			name: 'config',

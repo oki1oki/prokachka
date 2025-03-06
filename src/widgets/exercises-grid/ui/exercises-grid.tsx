@@ -51,7 +51,7 @@ export const ExercisesGrid = ({ exercises, className }: ExercisesGridProps) => {
 			</div>
 
 			<Dialog open={isModalOpen} onOpenChange={handleModalChange}>
-				<DialogContent>
+				<DialogContent className='max-w-[600px]'>
 					{selectedExercise && (
 						<ExerciseInfo exercise={selectedExercise} />
 					)}

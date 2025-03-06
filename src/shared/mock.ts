@@ -1,6 +1,7 @@
 import { Training } from '@/features/training/models/models';
 import { Account } from '@/entities/account';
 import { Exercise } from '@/entities/exercise';
+import { ShopItem } from '@/entities/shop/model/models';
 
 export const mockAccount: Account = {
 	profile: {
@@ -15,8 +16,9 @@ export const mockAccount: Account = {
 		},
 		expirience: 'intermediate',
 		trainingDays: 5,
-		favExIds: ['1', '2', '3'],
 		coins: 100,
+		favExIds: ['1', '2', '3'],
+		ownedItemsIds: ['1', '2', '3', '4'],
 	},
 	statistics: {
 		trainingsHistory: ['1', '2', '3'],
@@ -68,7 +70,11 @@ export const mockExercises: Exercise[] = [
 		],
 		imgUrl: 'https://cdn.muscleandstrength.com/sites/default/files/barbell-bench-press_0.jpg',
 		videoUrl: 'https://youtu.be/tuwHzzPdaGc',
-		difficult: 'medium',
+		difficult: {
+			value: 'medium',
+			label: 'Среднее',
+		},
+		metric: 'weight',
 	},
 	{
 		id: '2',
@@ -84,7 +90,11 @@ export const mockExercises: Exercise[] = [
 		],
 		imgUrl: 'https://proteinhouse.net/image/data/blog/gainingmass/2.jpg',
 		videoUrl: 'https://youtu.be/8nNi8jbbUPE',
-		difficult: 'hard',
+		difficult: {
+			value: 'medium',
+			label: 'Среднее',
+		},
+		metric: 'weight',
 	},
 	{
 		id: '3',
@@ -100,7 +110,11 @@ export const mockExercises: Exercise[] = [
 		],
 		imgUrl: 'https://avatars.dzeninfra.ru/get-zen_doc/1704908/pub_5e6960221eec766a4e439ff7_5e697f68ca551a68df05091e/scale_1200',
 		videoUrl: 'https://youtu.be/XZ3XSwmk1Os',
-		difficult: 'hard',
+		difficult: {
+			value: 'medium',
+			label: 'Среднее',
+		},
+		metric: 'weight',
 	},
 	{
 		id: '4',
@@ -113,7 +127,11 @@ export const mockExercises: Exercise[] = [
 		],
 		imgUrl: 'https://images.techinsider.ru/upload/img_cache/eb0/eb016c03bc80f92f1d8b5cb8f703ceb6_ce_1620x1080x156x0.jpg',
 		videoUrl: 'https://youtu.be/eGo4IYlbE5g',
-		difficult: 'medium',
+		difficult: {
+			value: 'medium',
+			label: 'Среднее',
+		},
+		metric: 'repetitions',
 	},
 	{
 		id: '5',
@@ -126,7 +144,11 @@ export const mockExercises: Exercise[] = [
 		],
 		imgUrl: 'https://musclefit.info/wp-content/uploads/2020/09/polza-otzhimanij.jpg',
 		videoUrl: 'https://youtu.be/IODxDxX7oi4',
-		difficult: 'easy',
+		difficult: {
+			value: 'medium',
+			label: 'Среднее',
+		},
+		metric: 'repetitions',
 	},
 ];
 
@@ -145,5 +167,44 @@ export const mockTrainings: Training[] = [
 		id: '3',
 		title: 'Полная тренировка тела',
 		exercisesIds: ['1', '2', '3', '4', '5'], // Все упражнения
+	},
+];
+
+export const mockShopItems: ShopItem[] = [
+	{
+		id: '1',
+		title: 'Сывороточный протеин',
+		description:
+			'Высококачественный сывороточный протеин для набора мышечной массы.',
+		price: 2500,
+		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
+	},
+	{
+		id: '2',
+		title: 'Гантели 10 кг',
+		description: 'Регулируемые гантели для домашних тренировок.',
+		price: 1500,
+		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
+	},
+	{
+		id: '3',
+		title: 'Фитнес-браслет',
+		description: 'Умный браслет с отслеживанием пульса и расхода калорий.',
+		price: 3000,
+		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
+	},
+	{
+		id: '4',
+		title: 'Коврик для йоги',
+		description: 'Экологичный коврик для занятий йогой и фитнесом.',
+		price: 1200,
+		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
+	},
+	{
+		id: '5',
+		title: 'Спортивная бутылка для воды',
+		description: 'Бутылка для воды с удобной крышкой и мерной шкалой.',
+		price: 800,
+		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
 	},
 ];

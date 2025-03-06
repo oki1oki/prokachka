@@ -1,9 +1,8 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ExercisesGrid } from '@/widgets/exercises-grid';
-import { useAccountStore } from '@/entities/account/models/store';
-import { AddExercise, Exercise } from '@/entities/exercise';
-import { useExerciseStore } from '@/entities/exercise/models/store';
+import { useAccountStore } from '@/entities/account';
+import { AddExercise, Exercise, useExerciseStore } from '@/entities/exercise';
 import { mockAccount, mockExercises } from '@/shared/mock';
 import { Button } from '@/shared/ui/button';
 
@@ -30,7 +29,7 @@ export const CatalogPage = () => {
 			<button
 				onClick={() => mockExercises.forEach((ex) => addExercise(ex))}
 			>
-				ДОБАВИТЬ
+				ДОБАВИТЬ тест
 			</button>
 			<button onClick={() => addAccount(mockAccount)}>
 				ДОБАВИТЬ ПРОФИЛЬ

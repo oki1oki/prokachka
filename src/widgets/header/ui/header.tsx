@@ -1,91 +1,39 @@
-'use client';
-
-import { BicepsFlexed, Dumbbell, Layers, Store } from 'lucide-react';
+import { BicepsFlexed } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/shared/utils/tw-merge';
+import { siteLinks } from '../model/links';
 
 export const Header = () => {
 	const { pathname } = useLocation();
 
 	return (
-		<>
-			<header className='bg-background sticky top-0 z-50 border-b dark:border-black'>
-				<div className='flex h-16 items-center justify-between'>
-					<Link to='/' className='flex items-center gap-2'>
-						<BicepsFlexed size={36} />
-						<h2 className='text-2xl font-bold'>
-							<span className='text-primary'>PRO</span>КАЧКА
-						</h2>
-					</Link>
-					<nav className='hidden sm:flex sm:items-center sm:gap-6'>
-						<Link
-							to='/catalog'
-							className={cn(
-								'hover:text-primary transition-colors',
-								pathname === '/catalog' && 'text-primary'
-							)}
-						>
-							Каталог упражнений
-						</Link>
-						<Link
-							to='/profile'
-							className={cn(
-								'hover:text-primary transition-colors',
-								pathname === '/profile' && 'text-primary'
-							)}
-						>
-							Тренировка
-						</Link>
-						<Link
-							to='/store'
-							className={cn(
-								'hover:text-primary transition-colors',
-								pathname === '/store' && 'text-primary'
-							)}
-						>
-							Магазин
-						</Link>
-					</nav>
-				</div>
-			</header>
-
-			{/* Навигация на мобильных устройствах */}
-			<nav className='bg-background/80 fixed right-4 bottom-2 left-4 z-50 flex h-16 w-auto items-center justify-around rounded-full border-t border-gray-200 shadow-lg backdrop-blur-[6px] sm:hidden dark:border-gray-800'>
-				<Link
-					to='/catalog'
-					className={cn(
-						'flex transform flex-col items-center justify-center gap-1 px-4 py-2 transition-transform hover:scale-110',
-						pathname === '/catalog'
-							? 'text-primary'
-							: 'text-gray-400'
-					)}
-				>
-					<Layers size={24} />
-					<span className='text-xs'>Каталог</span>
+		<header className='bg-background sticky top-0 z-50 border-b'>
+			<div className='max-w-8xl mx-auto flex h-16 max-h-auto items-center justify-between px-2 md:px-6'>
+				<Link to='/' className='flex items-center gap-2'>
+					<BicepsFlexed size={36} />
+					<h2 className='text-2xl font-bold'>
+						<span className='text-primary'>PRO</span>КАЧКА
+					</h2>
 				</Link>
-				<Link
-					to='/profile'
-					className={cn(
-						'flex transform flex-col items-center justify-center gap-1 px-4 py-2 transition-transform hover:scale-110',
-						pathname === '/profile'
-							? 'text-primary'
-							: 'text-gray-400'
-					)}
-				>
-					<Dumbbell size={24} />
-					<span className='text-xs'>Тренировка</span>
-				</Link>
-				<Link
-					to='/store'
-					className={cn(
-						'flex transform flex-col items-center justify-center gap-1 px-4 py-2 transition-transform hover:scale-110',
-						pathname === '/store' ? 'text-primary' : 'text-gray-400'
-					)}
-				>
-					<Store size={24} />
-					<span className='text-xs'>Магазин</span>
-				</Link>
-			</nav>
-		</>
+				<nav className='bg-background/80 sm:bg-background right-2 bottom-2 left-2 z-10 flex items-center justify-around border-gray-800 not-sm:fixed not-sm:rounded-full not-sm:border not-sm:shadow-lg not-sm:backdrop-blur-[6px] sm:h-full sm:gap-6 dark:border-gray-700'>
+					{siteLinks.map((link) => (
+						<Link
+							to={link.href}
+							className={cn(
+								'hover:text-primary flex h-full flex-col items-center justify-center gap-1 rounded-xl not-sm:px-2 not-sm:py-3',
+								'not-sm:text-gray-500',
+								pathname === link.href && 'text-primary!'
+							)}
+							key={link.href}
+						>
+							<link.icon size={24} className='sm:hidden' />
+							<span className='text-center not-sm:text-xs'>
+								{link.title}
+							</span>
+						</Link>
+					))}
+				</nav>
+			</div>
+		</header>
 	);
 };

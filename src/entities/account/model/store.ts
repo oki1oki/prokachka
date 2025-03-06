@@ -8,6 +8,7 @@ interface AccountStore {
 	addAccount: (account: Account) => void;
 	updateAccount: (data: Partial<Account>) => void;
 	toggleFavoriteExercise: (exerciseId: string) => void;
+	buyShopItem: (shopItemId: string) => void;
 }
 
 export const useAccountStore = create(
@@ -48,6 +49,31 @@ export const useAccountStore = create(
 					};
 				});
 			},
+			buyShopItem: (id) =>
+				set((state) => {
+					if (!state.account) throw new Error('Аккаунт не найден');
+
+					const isOwned =
+						state.account.profile.ownedItemsIds.includes(id);
+
+					if (isOwned)
+						return {
+							account: state.account,
+						};
+
+					return {
+						account: {
+							...state.account,
+							profile: {
+								...state.account.profile,
+								ownedItemsIds: [
+									...state.account.profile.ownedItemsIds,
+									id,
+								],
+							},
+						},
+					};
+				}),
 		}),
 		{
 			name: 'account-storage',

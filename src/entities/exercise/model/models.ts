@@ -15,7 +15,11 @@ export interface Exercise {
 	videoUrl: string;
 	// videoPlatform: VideoPlatform;
 	localVideoFile?: File;
-	difficult: ExerciseDifficult;
+	difficult: {
+		value: ExerciseDifficult;
+		label: string;
+	};
+	metric: 'repetitions' | 'weight' | 'duration';
 }
 
 export const difficultMap = {

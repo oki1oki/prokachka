@@ -1,3 +1,4 @@
+import { v4 as uuid4 } from 'uuid';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import { idbStorage } from '@/shared/utils/idb-storage';
@@ -25,7 +26,7 @@ export const useExerciseStore = create(
 					exercises: [
 						...state.exercises,
 						{
-							id: self.crypto.randomUUID(),
+							id: uuid4(),
 							...data,
 						},
 					],

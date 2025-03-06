@@ -48,12 +48,26 @@ export const useTrainingStore = create(
 					);
 					if (!training) throw new Error('Тренировка не найдена');
 
+					const testExercises = [
+						{
+							exerciseId: '1',
+							goal: 10,
+							reward: 10,
+						},
+						{
+							exerciseId: '2',
+							goal: 10,
+							reward: 10,
+						},
+					];
+
 					return {
 						userTrainings: [
 							...state.userTrainings,
 							{
 								id: self.crypto.randomUUID(),
 								trainigId: training.id,
+								exercises: testExercises,
 								totalTime: 0,
 								startDate: new Date(),
 								endDate: null,

@@ -22,9 +22,10 @@ export interface Profile {
 	};
 	expirience: 'beginner' | 'intermediate' | 'advanced';
 	trainingDays: number;
+	coins: number;
 
 	favExIds: string[];
-	coins: number;
+	ownedItemsIds: string[];
 }
 
 export interface AccountStatistics {

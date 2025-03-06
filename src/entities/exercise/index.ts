@@ -1,3 +1,3 @@
-export type { Exercise, ExerciseDifficult } from './models/models';
-export { useExerciseStore } from './models/store';
+export type { Exercise, ExerciseDifficult } from './model/models';
+export { useExerciseStore } from './model/store';
 export { AddExercise } from './ui/add-exercise';
