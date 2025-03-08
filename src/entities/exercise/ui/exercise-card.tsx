@@ -1,5 +1,5 @@
-import { Heart, Trash2 } from 'lucide-react';
-import { Exercise, useExerciseStore } from '@/entities/exercise';
+import { Heart } from 'lucide-react';
+import { Exercise } from '@/entities/exercise';
 import { Badge } from '@/shared/ui/badge';
 import {
 	Card,
@@ -24,8 +24,6 @@ export const ExerciseCard = ({
 	toggleFavorite,
 	onClick,
 }: ExerciseCardProps) => {
-	const { deleteExercise } = useExerciseStore();
-
 	return (
 		<Card
 			className='z-1 h-full cursor-pointer space-y-2 rounded-2xl border-none shadow-none'
@@ -36,7 +34,6 @@ export const ExerciseCard = ({
 					variant={difficultColors[exercise.difficult.value]}
 					className='absolute top-2.5 z-10 rounded-l-none font-bold'
 				>
-					{}
 					{exercise.difficult.label}
 				</Badge>
 
@@ -69,14 +66,6 @@ export const ExerciseCard = ({
 					{exercise.title}
 				</CardTitle>
 				<CardDescription>{exercise.description}</CardDescription>
-				<button
-					onClick={(e) => {
-						e.stopPropagation();
-						deleteExercise(exercise.id);
-					}}
-				>
-					<Trash2 />
-				</button>
 			</CardContent>
 		</Card>
 	);

@@ -22,7 +22,6 @@ export const RootLayout = () => {
 			BASE_COLORS.find((color) => color.name === theme)?.color || ''
 		);
 		document.documentElement.className = '';
-		document.documentElement.classList.add(mode);
 
 		if (mode === 'system') {
 			const isDark = window.matchMedia(
@@ -30,10 +29,12 @@ export const RootLayout = () => {
 			).matches;
 
 			if (isDark) {
-				console.log(1);
+				document.documentElement.classList.add('dark');
 			} else {
-				console.log(2);
+				document.documentElement.classList.add('light');
 			}
+		} else {
+			document.documentElement.classList.add(mode);
 		}
 	}, [theme, mode]);
 

@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 			{
 				path: '/shop',
 				element: (
-					<div className='grid grid-cols-3'>
+					<div className='grid grid-cols-2 gap-2'>
 						{mockShopItems.map((i) => (
 							<ShopPage item={i} key={i.id} />
 						))}

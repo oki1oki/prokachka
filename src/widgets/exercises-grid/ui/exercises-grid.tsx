@@ -1,9 +1,6 @@
 import { useState } from 'react';
 import { useAccountStore } from '@/entities/account';
-import { Exercise } from '@/entities/exercise';
-import { ExerciseCard } from '@/entities/exercise/ui/exercise-card';
-import { ExerciseInfo } from '@/entities/exercise/ui/exercise-info';
-import { Dialog, DialogContent } from '@/shared/ui/dialog';
+import { Exercise, ExerciseInfoModal, ExerciseCard } from '@/entities/exercise';
 import { cn } from '@/shared/utils/tw-merge';
 
 interface ExercisesGridProps {
@@ -28,6 +25,8 @@ export const ExercisesGrid = ({ exercises, className }: ExercisesGridProps) => {
 			}, 150);
 	};
 
+	console.log(exercises);
+
 	return (
 		<>
 			<div
@@ -50,13 +49,11 @@ export const ExercisesGrid = ({ exercises, className }: ExercisesGridProps) => {
 				))}
 			</div>
 
-			<Dialog open={isModalOpen} onOpenChange={handleModalChange}>
-				<DialogContent className='max-w-[600px]'>
-					{selectedExercise && (
-						<ExerciseInfo exercise={selectedExercise} />
-					)}
-				</DialogContent>
-			</Dialog>
+			<ExerciseInfoModal
+				isOpen={isModalOpen}
+				setIsOpen={handleModalChange}
+				exercise={selectedExercise}
+			/>
 		</>
 	);
 };

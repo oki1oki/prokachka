@@ -5,6 +5,7 @@ import { useAccountStore } from '@/entities/account';
 import { AddExercise, Exercise, useExerciseStore } from '@/entities/exercise';
 import { mockAccount, mockExercises } from '@/shared/mock';
 import { Button } from '@/shared/ui/button';
+import { Search } from '@/shared/ui/search';
 
 export const CatalogPage = () => {
 	const [isFavorites, setIsFavorites] = useState(false);
@@ -26,6 +27,7 @@ export const CatalogPage = () => {
 	return (
 		<div className='flex flex-col items-start gap-2'>
 			<h1>ПРИВЕТ {account?.profile?.username}</h1>
+			<Search />
 			<button
 				onClick={() => mockExercises.forEach((ex) => addExercise(ex))}
 			>

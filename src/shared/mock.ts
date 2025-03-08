@@ -5,7 +5,7 @@ import { ShopItem } from '@/entities/shop/model/models';
 
 export const mockAccount: Account = {
 	profile: {
-		username: 'john_doe',
+		username: 'Антон',
 		age: 30,
 		height: 180,
 		weight: 75,
@@ -189,7 +189,7 @@ export const mockShopItems: ShopItem[] = [
 	{
 		id: '3',
 		title: 'Фитнес-браслет',
-		description: 'Умный браслет с отслеживанием пульса и расхода калорий.',
+		description: 'Умны',
 		price: 3000,
 		imgUrl: 'https://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.pnghttps://primekraft.ru/upload/iblock/471/471730ceca7cc1b26774cf17e2a28293.png',
 	},

@@ -3,7 +3,6 @@
 @plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:where(.dark, .dark *));
-@custom-variant hover (&:hover);
 
 @theme inline {
 	--spacing-8xl: 1504px;
@@ -84,6 +83,7 @@
 	body {
 		@apply bg-background text-foreground;
 		height: 100%;
+		overflow: scroll;
 	}
 
 	button:not(:disabled),
@@ -136,7 +136,7 @@
 		--popover-foreground: 60, 9.1%, 97.8%;
 		--primary: 47.9, 95.8%, 53.1%;
 		--primary-foreground: 26, 83.3%, 14.1%;
-		--secondary: var(--secondary-dark);
+		--secondary: 12, 6.5%, 15.1%;
 		--secondary-foreground: 60, 9.1%, 97.8%;
 		--muted: 12, 6.5%, 15.1%;
 		--muted-foreground: 24, 5.4%, 63.9%;
@@ -153,12 +153,6 @@
 		--chart-4: 280, 65%, 60%;
 		--chart-5: 340, 75%, 55%;
 	}
-
-	/* @media (prefers-color-scheme: dark) {
-			html {
-				color-scheme: dark;
-			}
-		} */
 }
 
 @layer base {
